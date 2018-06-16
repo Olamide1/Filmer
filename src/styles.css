@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+.carousel-inner {
+    height: 350px !important;
+}
+.loader {
+  border: 4px solid #e4f3fa;
+  /* Light grey */
+  border-top: 4px solid #111213;
+  /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.navbar-brand {
+    color: black;
+    font-family: 'Rouge Script',cursive;
+}
+h4 {
+  font-family: 'Rouge Script',cursive;
+}

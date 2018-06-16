@@ -1,0 +1,22 @@
+{
+  "name": "filmer",
+  "description": "Movie Listing by Name of star, Genre Etc",
+  "main": "",
+  "authors": [
+    "Olamide Akomolafe <olamideakomolafe1234@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "jquery": "^3.3.1"
+  }
+}
