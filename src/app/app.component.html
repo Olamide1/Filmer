@@ -25,7 +25,11 @@
 <div align="center" *ngIf="error">
   <h4 style="color: red;">{{error}}</h4>
 </div>
-<div >
+<div>
+  <div align="center">
+    <input type="text" [(ngModel)]="search" class="form-control" placeholder="Search By Genre, or Actor" 
+    (keyup.enter)="show()">
+  </div><br>
 <div class="row">
   <ul *ngFor="let list of lists | slice:0:6; let i=index">
   <a> 
@@ -43,3 +47,13 @@
 </div>
 </div>
 </div>
+
+<!--  <li class="card" style="width: 18rem;">
+      <div class="card-body">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w185/{{list.poster_path}}" alt="Card image Cap">
+        <h4 class="card-title"> {{list.title}}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">{{list.original_title}}</h6>
+        <p class="card-text">Popularity: {{list.popularity}}</p>
+        <a href="#" class="card-header">Release date: {{list.release_date}}</a>
+      </div>
+    </li>-->

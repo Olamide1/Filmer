@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   loading = true;
   error: string;
   showinfo = true;
+  search: string;
   ngOnInit () {
     this.loading = true;
     this.http.get('https://api.themoviedb.org/3/discover/movie?api_key=4630eff32e0cfc71fd521e43e5293d20&language=en-US&'
@@ -29,5 +30,9 @@ export class AppComponent implements OnInit {
 
   loadDets () {
     this.showinfo = true;
+  }
+
+  show () {
+    console.log(this.search);
   }
 }
