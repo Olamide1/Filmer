@@ -36,9 +36,12 @@ export class AppComponent implements OnInit {
   async find () {
     this.showinfo = false;
     this.loading = true;
+    this.lists = [];
     const genre = this.search;
     console.log(genre);
     if (genre === 'Action' || genre === 'action' ) {
+      this.lister = [];
+      this.lists = [];
      await this.http.get('https://api.themoviedb.org/3/genre/28/movies?'
         + 'api_key=4630eff32e0cfc71fd521e43e5293d20&language=en-US' + '&include_adult=false').subscribe( response => {
           this.loading = false;
@@ -52,6 +55,8 @@ export class AppComponent implements OnInit {
           this.error = 'Please Check your internet connection';
         });
     } else if (genre === 'Romance' || genre === 'romance') {
+      this.lister = [];
+      this.lists = [];
      await this.http.get('https://api.themoviedb.org/3/genre/18/movies?'
         + 'api_key=4630eff32e0cfc71fd521e43e5293d20&language=en-US' + '&include_adult=false').subscribe( response => {
           this.loading = false;
@@ -65,6 +70,8 @@ export class AppComponent implements OnInit {
           this.error = 'Please Check Your Internet Connection';
         });
     } else if (genre === 'fantasy' || genre === 'Fantasy') {
+      this.lister = [];
+      this.lists = [];
      await this.http.get('https://api.themoviedb.org/3/genre/878/movies?'
         + 'api_key=4630eff32e0cfc71fd521e43e5293d20&language=en-US' + '&include_adult=false').subscribe( response => {
           this.loading = false;
@@ -77,6 +84,8 @@ export class AppComponent implements OnInit {
           this.error = 'Please Check Your Internet Connection and Reload';
         });
     } else if (genre === 'comedy' || genre === 'Comedy') {
+      this.lists = [];
+      this.lister = [];
       await this.http.get('https://api.themoviedb.org/3/genre/35/movies?'
         + 'api_key=4630eff32e0cfc71fd521e43e5293d20&language=en-US' + '&include_adult=false').subscribe(response => {
           this.loading = false;
@@ -85,17 +94,30 @@ export class AppComponent implements OnInit {
         }, error => {
           this.error = 'Please Check you internet Connection and Reload';
         });
+    } else if (genre === 'Tom Cruise' || genre === 'Tom cruise' || genre === 'tom cruise') {
+      this.lister = [];
+      this.lists = [];
+      await this.http.get('https://api.themoviedb.org/3/discover/movie?api_key=4630eff32e0cfc71fd521e43e5293d20&language=en-US&'
+        + 'with_cast=500&sort_by=popularity.desc&include_adult=false&include_video=false&page=1').subscribe( response => {
+          this.loading = false;
+        this.lister.push(response);
+      }, error => {
+        this.error = 'Please Check your internet connection';
+      });
+    } else if (genre === 'Will Ferrell' || genre === 'will ferrell' || genre === 'Will ferrell') {
+      this.lister = [];
+      this.lists = [];
+      this.http.get('https://api.themoviedb.org/3/discover/movie?api_key=4630eff32e0cfc71fd521e43e5293d20&language=en-US&'
+        + 'with_cast=23659&sort_by=popularity.desc&include_adult=false&include_video=false&page=1').subscribe( response => {
+          this.loading = false;
+          this.lister.push(response);
+        }, error => {
+          this.error = 'Cannot Connect to the API, Check Your Connection';
+        });
     } else {
       this.loading = false;
       this.error = 'No Movie found for: ' + genre;
     }
-    /** this.http.get('https://api.themoviedb.org/3/genre/{genre_id}/movies?'
-      + 'api_key=4630eff32e0cfc71fd521e43e5293d20&language=en-US' + '&include_adult=false').subscribe(response => {
-      console.log(response);
-      this.lists.push(response);
-    }, error => {
-      console.log(error);
-    });**/
 
   }
 }
