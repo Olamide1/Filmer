@@ -1,11 +1,7 @@
 <div class="container-fluid">
-<nav class="navbar navbar-default">
-<div class="nav navbar-nav">
-  <div class="navbar-header">
-    <a href="#" class="navbar-brand">Filmer</a>
-  </div>
+<div class="header">
+  <a (click)="loadMovies()" class="logo">Filmer</a>
 </div>
-</nav>
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -19,33 +15,46 @@
     </div>
   </div>
 </div><br>
+  <div align="center">
+    <input type="text" [(ngModel)]="search" class="form-control" placeholder="Search By Genre, or Actor" 
+    (keyup.enter)="find()" focus="showinfo = false">
+  </div><br>
+  <div align="center" *ngIf="error">
+    <h4 style="color: red; font-size: 15px;">{{error}}</h4>
+  </div>
 <div align="center" *ngIf="loading == true">
   <div class="loader"></div>
 </div>
-<div align="center" *ngIf="error">
-  <h4 style="color: red;">{{error}}</h4>
-</div>
-<div>
-  <div align="center">
-    <input type="text" [(ngModel)]="search" class="form-control" placeholder="Search By Genre, or Actor" 
-    (keyup.enter)="show()">
-  </div><br>
-<div class="row">
-  <ul *ngFor="let list of lists | slice:0:6; let i=index">
-  <a> 
+<div class="container-fluid" *ngIf="showinfo == true; else lit">
+  <ul *ngFor="let l of lists" class="row">
+  <a *ngFor="let list of l.results"> 
     <li class="card" style="width: 18rem;">
       <div class="card-body">
         <img class="card-img-top" src="https://image.tmdb.org/t/p/w185/{{list.poster_path}}" alt="Card image Cap">
         <h4 class="card-title"> {{list.title}}</h4>
         <h6 class="card-subtitle mb-2 text-muted">{{list.original_title}}</h6>
-        <p class="card-text">Popularity: {{list.popularity}}</p>
+        <p class="card-text">Popularity: {{list.vote_count}} People Voted</p>
         <a href="#" class="card-header">Release date: {{list.release_date}}</a>
       </div>
     </li>
   </a>
   </ul>
 </div>
-</div>
+<ng-template #lit>
+  <ul *ngFor="let l of lister" class="row">
+    <a *ngFor="let list of l.results">
+      <li class="card" style="width: 18rem;">
+        <div class="card-body">
+          <img class="card-img-top" src="https://image.tmdb.org/t/p/w185/{{list.poster_path}}" alt="Card image Cap">
+          <h4 class="card-title"> {{list.title}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{list.original_title}}</h6>
+          <p class="card-text">Popularity: {{list.vote_count}} People Voted</p>
+          <a href="#" class="card-header">Release date: {{list.release_date}}</a>
+        </div>
+      </li>
+    </a>
+  </ul>
+</ng-template>
 </div>
 
 <!--  <li class="card" style="width: 18rem;">
