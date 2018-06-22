@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="header">
+    <a (click)="loadMovies()" class="logo">&hearts; Filmer</a>
+  </div>
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="../assets/images/cover1.jpg" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="../assets/images/cover2.jpg" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="../assets/images/cover3.jpg" alt="Third slide">
+      </div>
+    </div>
+  </div>
+  <br>
+  <div align="center">
+    <input type="text" [(ngModel)]="search" class="form-control" placeholder="Search By Genre, or Actor(Tom Cruise or Will Ferrell)"
+      (keyup.enter)="Cache()" focus="showinfo = false">
+  </div>
+  <br>
+  <div align="center" *ngIf="error">
+    <h4 style="color: red; font-size: 15px;">{{error}}</h4>
+  </div>
+  <div align="center" *ngIf="loading == true">
+    <div class="loader"></div>
+  </div>
+  <div class="container-fluid" *ngIf="lists.length >= 0">
+    <ul *ngFor="let l of lists" class="row">
+      <a *ngFor="let list of l.results">
+        <li class="card" style="width: 18rem;">
+          <div class="card-body">
+            <img class="card-img-top" src="https://image.tmdb.org/t/p/w185/{{list.poster_path}}" alt="Card image Cap">
+            <h4 class="card-title"> {{list.title}}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">{{list.original_title}}</h6>
+            <p class="card-text">Popularity: {{list.vote_count}} People Voted</p>
+            <a href="#" class="card-header">Release date: {{list.release_date}}</a>
+          </div>
+        </li>
+      </a>
+    </ul>
+  </div>
+</div>

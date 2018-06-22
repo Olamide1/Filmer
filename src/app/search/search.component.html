@@ -1,0 +1,34 @@
+<div class="container-fluid">
+
+<div class="header">
+  <a href="/" class="logo" (click)="clear()">&hearts; Filmer</a>
+</div><br>
+<div align="center">
+  <input type="text" [(ngModel)]="search" class="form-control" placeholder="Results for {{show}}"
+    (keyup.enter)="find()" focus="showinfo = false">
+</div><br>
+<div align="center" *ngIf="loading == true">
+  <div class="loader"></div>
+</div>
+<div align="center" *ngIf="error">
+  <h4 style="color: red; font-size: 15px;">{{error}}</h4>
+</div>
+<br><br><br>
+<div class="container-fluid">
+<div *ngIf="lister.length >= 0">
+  <ul *ngFor="let l of lister" class="row">
+    <a *ngFor="let list of l.results">
+      <li class="card" style="width: 18rem;">
+        <div class="card-body">
+          <img class="card-img-top" src="https://image.tmdb.org/t/p/w185/{{list.poster_path}}" alt="Card image Cap">
+          <h4 class="card-title"> {{list.title}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{list.original_title}}</h6>
+          <p class="card-text">Popularity: {{list.vote_count}} People Voted</p>
+          <a href="#" class="card-header">Release date: {{list.release_date}}</a>
+        </div>
+      </li>
+    </a>
+  </ul>
+</div>
+</div>
+</div>
